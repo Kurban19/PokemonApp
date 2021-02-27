@@ -10,9 +10,9 @@
         android:id="@+id/FirstFragment"
         android:name="com.shkiper.pokemonapp.ui.fragments.search.SearchFragment" />
 
-<!--    <fragment-->
-<!--        android:id="@id/secondTabFragment"-->
-<!--        android:name="cookpad.com.bottomnavwatson.SecondFragment" />-->
+    <fragment
+        android:id="@+id/SecondFragment"
+        android:name="com.shkiper.pokemonapp.ui.fragments.favorites.FavoritesFragment" />
 
 
 </navigation>
