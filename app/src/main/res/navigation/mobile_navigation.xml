@@ -5,25 +5,14 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/FirstFragment">
 
-<!--    <fragment-->
-<!--        android:id="@+id/FirstFragment"-->
-<!--        android:name="com.shkiper.popmovies.ui.fragments.main.MainFragment"-->
-<!--        android:label="Main"-->
-<!--        tools:layout="@layout/fragment_main">-->
 
-<!--        <action-->
-<!--            android:id="@+id/action_FirstFragment_to_SecondFragment"-->
-<!--            app:destination="@id/DescriptionFragment" />-->
-<!--    </fragment>-->
-<!--    <fragment-->
-<!--        android:id="@+id/DescriptionFragment"-->
-<!--        android:name="com.shkiper.popmovies.ui.fragments.description.Description"-->
-<!--        android:label="Description"-->
-<!--        tools:layout="@layout/fragment_description">-->
+    <fragment
+        android:id="@+id/FirstFragment"
+        android:name="com.shkiper.pokemonapp.ui.fragments.search.SearchFragment" />
 
-<!--        <action-->
-<!--            android:id="@+id/action_SecondFragment_to_FirstFragment"-->
-<!--            app:destination="@id/FirstFragment" />-->
-<!--    </fragment>-->
+<!--    <fragment-->
+<!--        android:id="@id/secondTabFragment"-->
+<!--        android:name="cookpad.com.bottomnavwatson.SecondFragment" />-->
+
 
 </navigation>
