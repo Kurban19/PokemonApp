@@ -16,5 +16,5 @@ interface PokeApiService {
     @GET("pokemon/{pokemon_id}")
     suspend fun getRandomPokemon(
         @Path("pokemon_id") id: String = Random.nextInt(0, 900).toString()
-    ): Call<List<Pokemon>>
+    ): Call<Pokemon>
 }

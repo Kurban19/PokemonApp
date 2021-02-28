@@ -6,8 +6,8 @@ import kotlin.random.Random
 
 interface PokeApi {
 
-    suspend fun searchPokemon(name: String): Call<List<Pokemon>>
+    suspend fun searchPokemon(name: String): Call<Pokemon>
 
-    suspend fun getRandomPokemon(): Call<List<Pokemon>>
+    suspend fun getRandomPokemon(): Call<Pokemon>
 
 }

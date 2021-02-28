@@ -12,40 +12,38 @@ import retrofit2.Call
 import retrofit2.Callback;
 import retrofit2.Response
 
-
 class SearchViewModel(private val apiHelper: PokeApi): ViewModel() {
 
 
-    private val movies = MutableLiveData<Resource<List<Pokemon>>>()
+    private val pokemon = MutableLiveData<Resource<Pokemon>>()
 
 
-    fun findMovies(query: String){
+    fun findPokemon(query: String){
         viewModelScope.launch {
-            movies.postValue(Resource.loading(null))
+            pokemon.postValue(Resource.loading(null))
             try {
                 val resultFromApi = apiHelper.searchPokemon(name = query)
-//                movies.postValue(Resource.success(resultFromApi))
-                resultFromApi.enqueue(object :Callback<List<Pokemon>>{
+                resultFromApi.enqueue(object :Callback<Pokemon>{
                     override fun onResponse(
-                        call: Call<List<Pokemon>>,
-                        response: Response<List<Pokemon>>
+                        call: Call<Pokemon>,
+                        response: Response<Pokemon>
                     ) {
-                        movies.postValue(Resource.success(response.body()))
+                        pokemon.postValue(Resource.success(response.body()))
                     }
 
-                    override fun onFailure(call: Call<List<Pokemon>>, t: Throwable) {
-                        movies.postValue(Resource.error(t.localizedMessage.toString(), null))
+                    override fun onFailure(call: Call<Pokemon>, t: Throwable) {
+                        pokemon.postValue(Resource.error(t.localizedMessage.toString(), null))
                     }
 
                 })
             } catch (e: Exception) {
-                movies.postValue(Resource.error(e.toString(), null))
+                pokemon.postValue(Resource.error(e.toString(), null))
             }
         }
     }
 
-    fun getMovies(): LiveData<Resource<List<Pokemon>>>? {
-        return movies
+    fun getPokemon(): LiveData<Resource<Pokemon>>? {
+        return pokemon
     }
 
 }
