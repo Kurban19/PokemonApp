@@ -7,4 +7,5 @@
     <string name="search_hint">Введите имя покемона</string>
     <string name="search">Поиск</string>
     <string name="no_results_text">Ничего не найдено</string>
+    <string name="random_text">Случайный</string>
 </resources>
