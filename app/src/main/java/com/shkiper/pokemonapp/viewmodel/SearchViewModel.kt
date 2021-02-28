@@ -25,7 +25,7 @@ class SearchViewModel(private val apiHelper: PokeApi): ViewModel() {
             try {
                 val resultFromApi = apiHelper.searchPokemon(name = query)
 //                movies.postValue(Resource.success(resultFromApi))
-                resultFromApi.enqueue(object :Callback<List<Pokemon>>(){
+                resultFromApi.enqueue(object :Callback<List<Pokemon>>{
                     override fun onResponse(
                         call: Call<List<Pokemon>>,
                         response: Response<List<Pokemon>>

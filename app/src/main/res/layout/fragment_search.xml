@@ -32,6 +32,7 @@
                 android:imeOptions="actionDone"
                 android:inputType="textShortMessage"
                 android:maxLines="1"
+                android:textColor="@android:color/black"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
                 android:singleLine="true"
@@ -67,8 +68,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/iv_pokemon_image"
-            tools:text="Bulbasaur"
-            android:textStyle="bold"
+            android:text="Bulbasaur"
+            android:textColor="@android:color/black"
             android:layout_marginTop="@dimen/spacing_normal_16"
             android:textSize="@dimen/font_huge_24"/>
 
@@ -79,6 +80,7 @@
             android:src="@drawable/ic_bookmark_24"
             android:layout_alignParentEnd="true"
             android:layout_margin="@dimen/spacing_normal_16"
+            android:visibility="visible"
             />
 
     </RelativeLayout>
