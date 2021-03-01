@@ -1,6 +1,7 @@
 package com.shkiper.pokemonapp.ui.fragments.search
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -60,6 +61,7 @@ class SearchFragment : Fragment() {
                 }
                 Resource.Status.ERROR ->{
                     hideLoader()
+                    Log.d("tAg", it.message.toString())
                     showError()
                 }
             }
@@ -95,8 +97,4 @@ class SearchFragment : Fragment() {
         no_results_placeholder.text = no_results_placeholder.context.getString(R.string.error)
     }
 
-    companion object {
-        @JvmStatic
-        fun getNewInstance() = SearchFragment()
-    }
 }

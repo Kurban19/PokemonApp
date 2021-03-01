@@ -13,15 +13,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val firstFragment = SearchFragment()
-        val secondFragment = FavoritesFragment()
+        val searchFragment = SearchFragment()
+        val favoritesFragment = FavoritesFragment()
 
-        setCurrentFragment(firstFragment)
+        setCurrentFragment(searchFragment)
 
         bottom_navigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.search_page->setCurrentFragment(firstFragment)
-                R.id.favorites_page->setCurrentFragment(secondFragment)
+                R.id.search_page->setCurrentFragment(searchFragment)
+                R.id.favorites_page->setCurrentFragment(favoritesFragment)
 //                R.id.settings->setCurrentFragment(thirdFragment)
 
             }

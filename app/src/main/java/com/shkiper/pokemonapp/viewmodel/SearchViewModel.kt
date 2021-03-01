@@ -1,5 +1,6 @@
 package com.shkiper.pokemonapp.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -22,20 +23,7 @@ class SearchViewModel(private val apiHelper: PokeApi): ViewModel() {
         viewModelScope.launch {
             pokemon.postValue(Resource.loading(null))
             try {
-                val resultFromApi = apiHelper.searchPokemon(name = query)
-                resultFromApi.enqueue(object :Callback<Pokemon>{
-                    override fun onResponse(
-                        call: Call<Pokemon>,
-                        response: Response<Pokemon>
-                    ) {
-                        pokemon.postValue(Resource.success(response.body()))
-                    }
-
-                    override fun onFailure(call: Call<Pokemon>, t: Throwable) {
-                        pokemon.postValue(Resource.error(t.localizedMessage.toString(), null))
-                    }
-
-                })
+                pokemon.postValue(Resource.success(apiHelper.searchPokemon(name = query)))
             } catch (e: Exception) {
                 pokemon.postValue(Resource.error(e.toString(), null))
             }

@@ -11,10 +11,10 @@ interface PokeApiService {
     @GET("pokemon/{pokemon_name}")
     suspend fun searchPokemon(
         @Path("pokemon_name") name: String
-    ): Call<List<Pokemon>>
+    ): Pokemon
 
     @GET("pokemon/{pokemon_id}")
     suspend fun getRandomPokemon(
         @Path("pokemon_id") id: String = Random.nextInt(0, 900).toString()
-    ): Call<Pokemon>
+    ): Pokemon
 }
