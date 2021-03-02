@@ -77,7 +77,7 @@ class SearchFragment : Fragment() {
 
     private fun showPokemon(pokemon: Pokemon) {
         Glide.with(iv_pokemon_image)
-                .load(pokemon.imageUrl)
+                .load(pokemon.getImageUrl())
                 .into(iv_pokemon_image)
 
         tv_pokemon_name.text = pokemon.name

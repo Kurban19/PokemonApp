@@ -6,6 +6,9 @@ data class Pokemon(val id: String,
                    val name: String,
                    val height: String,
                    val weight: String,
-                   val description: String,
-                    @SerializedName("sprites/other/official-artwork/front_default")
-                   val imageUrl: String)
+                   val description: String){
+
+    fun getImageUrl(): String{
+        return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png"
+    }
+}
