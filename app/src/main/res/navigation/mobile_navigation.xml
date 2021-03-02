@@ -5,11 +5,13 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/FirstFragment">
 
-
     <fragment
         android:id="@+id/FirstFragment"
         android:name="com.shkiper.pokemonapp.ui.fragments.search.SearchFragment" />
 
+    <fragment
+        android:id="@+id/ThirdFragment"
+        android:name="com.shkiper.pokemonapp.ui.fragments.random.RandomFragment"/>
 
     <fragment
         android:id="@+id/SecondFragment"

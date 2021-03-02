@@ -3,6 +3,7 @@ package com.shkiper.pokemonapp.utill
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.shkiper.pokemonapp.retrofit.PokeApi
+import com.shkiper.pokemonapp.viewmodel.RandomViewModel
 import com.shkiper.pokemonapp.viewmodel.SearchViewModel
 
 class ViewModelFactory(private val apiHelper: PokeApi) :
@@ -11,6 +12,10 @@ class ViewModelFactory(private val apiHelper: PokeApi) :
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if(modelClass.isAssignableFrom(SearchViewModel::class.java)){
             return SearchViewModel(apiHelper) as T
+        }
+
+        if(modelClass.isAssignableFrom(RandomViewModel::class.java)){
+            return RandomViewModel(apiHelper) as T
         }
         throw IllegalArgumentException("Unknown class name")
     }
