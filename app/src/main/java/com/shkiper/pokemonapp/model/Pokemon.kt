@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 data class Pokemon(val id: String,
                    val name: String,
+                   @SerializedName("base_experience")
+                   val experience: Int,
                    val height: String,
                    val weight: String,
                    val description: String){

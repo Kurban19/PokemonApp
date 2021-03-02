@@ -42,7 +42,8 @@ class SearchFragment : Fragment() {
             if (query.isBlank()) {
                 Snackbar.make(view, getString(R.string.search_alert), Snackbar.LENGTH_LONG).show()
             } else {
-                findPokemon(query)
+
+                findPokemon(query.toLowerCase())
             }
         }
     }
@@ -74,16 +75,18 @@ class SearchFragment : Fragment() {
                 SearchViewModel::class.java)
     }
 
-
     private fun showPokemon(pokemon: Pokemon) {
+        pokemon_result.visibility = View.VISIBLE
         Glide.with(iv_pokemon_image)
                 .load(pokemon.getImageUrl())
                 .into(iv_pokemon_image)
 
+        tv_base_experience_scores.text = pokemon.experience.toString()
         tv_pokemon_name.text = pokemon.name
     }
 
     private fun showLoader() {
+        no_results_placeholder.visibility = View.GONE
         progress_bar.visibility = View.VISIBLE
     }
 
