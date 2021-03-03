@@ -20,8 +20,4 @@ class FavoritesFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_favorites, container, false)
     }
 
-    companion object {
-
-        fun newInstance(param1: String, param2: String) = FavoritesFragment()
-    }
 }
