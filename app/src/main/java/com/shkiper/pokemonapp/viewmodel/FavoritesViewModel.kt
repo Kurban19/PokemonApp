@@ -1,5 +1,8 @@
 package com.shkiper.pokemonapp.viewmodel
 
-class FavoritesViewModel {
+import androidx.lifecycle.ViewModel
+
+class FavoritesViewModel : ViewModel(){
+
 
 }

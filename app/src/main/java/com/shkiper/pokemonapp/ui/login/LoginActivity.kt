@@ -11,6 +11,7 @@ import com.firebase.ui.auth.IdpResponse
 import com.shkiper.pokemonapp.R
 import com.shkiper.pokemonapp.firebase.FirebaseDatabase
 import com.shkiper.pokemonapp.ui.main.MainActivity
+import kotlinx.android.synthetic.main.activity_login.*
 
 
 class LoginActivity : AppCompatActivity() {
@@ -23,8 +24,18 @@ class LoginActivity : AppCompatActivity() {
                     .build())
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.Theme_PokemonApp)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        btn_login.setOnClickListener{
+            val intent = AuthUI.getInstance().createSignInIntentBuilder()
+                .setAvailableProviders(signInProviders)
+                .setLogo(R.mipmap.ic_launcher)
+                .build()
+            startActivityForResult(intent,RC_SIGN_IN)
+        }
+
     }
 
 

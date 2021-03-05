@@ -7,8 +7,7 @@ data class Pokemon(val id: String,
                    @SerializedName("base_experience")
                    val experience: Int,
                    val height: String,
-                   val weight: String,
-                   val description: String){
+                   val weight: String){
 
     fun getImageUrl(): String{
         return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png"

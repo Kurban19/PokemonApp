@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "577934630332",
+    "project_id": "pokemonapp-37b1d",
+    "storage_bucket": "pokemonapp-37b1d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577934630332:android:ec47478fab44148f7b9fb9",
+        "android_client_info": {
+          "package_name": "com.shkiper.pokemonapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "577934630332-g96b4o4coi28bp5budpinhu1649oj2oh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCt6OTontQ8CjBnjh2SBBwhdtKR_1LGVks"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "577934630332-g96b4o4coi28bp5budpinhu1649oj2oh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
