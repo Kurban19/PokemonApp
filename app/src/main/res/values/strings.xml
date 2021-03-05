@@ -12,4 +12,5 @@
     <string name="error">Ошибка</string>
     <string name="string_base_experience">Base experience:</string>
     <string name="string_get_random">Найти случайного</string>
+    <string name="sign_up_btn">Войти</string>
 </resources>

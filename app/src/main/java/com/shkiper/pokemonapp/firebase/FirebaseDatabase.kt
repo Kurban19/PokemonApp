@@ -1,6 +1,6 @@
 package com.shkiper.pokemonapp.firebase
 
-interface FirebaseFavoritesRepository {
+interface FirebaseDatabase {
 
     fun getFavorites()
 

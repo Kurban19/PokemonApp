@@ -23,4 +23,10 @@
         <item name="android:windowBackground">@drawable/splash_theme</item>
     </style>
 
+    <style name="SignUp"/>
+
+    <style name="SignUp.Button" parent="SignUp">
+        <item name="android:background">@drawable/rounded_button</item>
+    </style>
+
 </resources>

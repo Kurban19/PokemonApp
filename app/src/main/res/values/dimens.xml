@@ -17,4 +17,5 @@
 
     <!--size elements-->
     <dimen name="pokemon_image_size">60dp</dimen>
+    <dimen name="default_corners">25dp</dimen>
 </resources>
