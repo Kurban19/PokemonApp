@@ -1,11 +1,37 @@
 package com.shkiper.pokemonapp.firebase
 
-interface FirebaseDatabase {
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
+import com.shkiper.pokemonapp.model.User
 
-    fun getFavorites()
+object FirebaseDatabase {
 
-    fun addToFavorites(id: String)
+    private val fireStoreInstance: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
 
-    fun deleteFromFavorites(id: String)
+
+    private val currentUserDocRef: DocumentReference
+        get() = fireStoreInstance.document(
+            "users/${
+                FirebaseAuth.getInstance().currentUser?.uid
+                    ?: throw NullPointerException("UID is null.")}"
+        )
+
+
+    fun initCurrentUserIfFirstTime(onComplete: () -> Unit) {
+        currentUserDocRef.get().addOnSuccessListener { documentSnapshot ->
+            if (!documentSnapshot.exists()) {
+                with(FirebaseAuth.getInstance().currentUser){
+                    val newUser = User(this!!.uid, email = email ?: "", favoritesList = mutableListOf())
+                    currentUserDocRef.set(newUser)
+                }
+            }
+        }
+    }
+
+    fun getFavorites(){
+
+    }
+
 
 }
