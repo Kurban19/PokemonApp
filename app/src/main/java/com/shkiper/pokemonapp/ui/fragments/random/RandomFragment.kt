@@ -24,6 +24,7 @@ import kotlinx.android.synthetic.main.fragment_search.progress_bar
 class RandomFragment : Fragment() {
 
     private lateinit var viewModel: RandomViewModel
+    private lateinit var pokemon: Pokemon
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +42,10 @@ class RandomFragment : Fragment() {
         btn_get_random.setOnClickListener {
             getPokemon()
         }
+
+
+
+
     }
 
 
@@ -52,6 +57,7 @@ class RandomFragment : Fragment() {
                 Resource.Status.SUCCESS -> {
                     hideLoader()
                     showPokemon(it.data!!)
+                    pokemon = it.data
                 }
                 Resource.Status.LOADING -> {
                     showLoader()

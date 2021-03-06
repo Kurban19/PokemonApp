@@ -98,6 +98,7 @@
 
 
         <ImageView
+            android:id="@+id/iv_add_to_favorites"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_bookmark_24"

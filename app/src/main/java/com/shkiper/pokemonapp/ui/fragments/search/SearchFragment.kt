@@ -22,7 +22,7 @@ import com.shkiper.pokemonapp.utill.ViewModelFactory
 class SearchFragment : Fragment() {
 
     private lateinit var viewModel: SearchViewModel
-
+    private lateinit var pokemon: Pokemon
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,16 +45,22 @@ class SearchFragment : Fragment() {
                 findPokemon(query.toLowerCase())
             }
         }
+
+        iv_add_to_favorites.setOnClickListener {
+            viewModel.addToFavorites(pokemon)
+        }
+
     }
 
     private fun findPokemon(query: String) {
         showLoader()
         viewModel.findPokemon(query)
-        viewModel.getPokemon()?.observe(viewLifecycleOwner, Observer {
+        viewModel.getPokemon().observe(viewLifecycleOwner, Observer {
             when(it.status){
                 Resource.Status.SUCCESS ->{
                     hideLoader()
                     showPokemon(it.data!!)
+                    pokemon = it.data
                 }
                 Resource.Status.LOADING ->{
                     showLoader()

@@ -59,7 +59,7 @@ class FavoritesFragment : Fragment() {
     }
 
     private fun setupObserver() {
-        viewModel.getFavorites()?.observe(viewLifecycleOwner, Observer {
+        viewModel.getFavorites().observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
                     val pokemons = it.data ?: emptyList()
