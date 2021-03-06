@@ -30,7 +30,11 @@ class SearchViewModel(private val apiHelper: PokeApi): ViewModel() {
         }
     }
 
-    fun getPokemon(): LiveData<Resource<Pokemon>>? {
+    fun addToFavorites(pokemon: Pokemon){
+
+    }
+
+    fun getPokemon(): LiveData<Resource<Pokemon>> {
         return pokemon
     }
 

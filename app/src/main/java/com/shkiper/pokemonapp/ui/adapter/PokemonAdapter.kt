@@ -17,7 +17,7 @@ class PokemonAdapter: RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val convertView = inflater.inflate(R.layout.rv_movie_item, parent, false)
+        val convertView = inflater.inflate(R.layout.rv_pokemon_item, parent, false)
         return PokemonViewHolder(convertView)
     }
 

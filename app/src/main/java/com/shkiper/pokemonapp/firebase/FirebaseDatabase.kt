@@ -35,11 +35,24 @@ object FirebaseDatabase {
 
 
     fun addPokemonToFavorites(pokemon: Pokemon){
-
+        favoritesCollectionRef
+                .document(currentUserDocRef.id)
+                .collection("listOfFavorites")
+                .document(pokemon.id)
+                .set(pokemon)
     }
 
-    fun getFavorites(){
-
+    fun getFavorites(): List<Pokemon>{
+        val listOfPokemon = mutableListOf<Pokemon>()
+        favoritesCollectionRef.document(currentUserDocRef.id)
+                .collection("listOfFavorites")
+                .get().addOnSuccessListener{ result ->
+                    for(document in result){
+                        val pokemon = document.toObject(Pokemon::class.java)
+                        listOfPokemon.add(pokemon)
+                    }
+                }
+        return listOfPokemon
     }
 
 

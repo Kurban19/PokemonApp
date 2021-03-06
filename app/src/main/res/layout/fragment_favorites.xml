@@ -8,9 +8,26 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_result"
+        tools:listitem="@layout/rv_pokemon_item"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar_favorites"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/no_results_placeholder_favorites"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="visible"
+        android:text="@string/no_results_text" />
 
 </FrameLayout>
