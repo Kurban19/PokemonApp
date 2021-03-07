@@ -20,7 +20,7 @@ object FirebaseDatabase {
                     ?: throw NullPointerException("UID is null.")}"
         )
 
-    fun initCurrentUserIfFirstTime(onComplete: () -> Unit) {
+    fun initCurrentUserIfFirstTime() {
         currentUserDocRef.get().addOnSuccessListener { documentSnapshot ->
             if (!documentSnapshot.exists()) {
                 with(FirebaseAuth.getInstance().currentUser){
@@ -28,7 +28,7 @@ object FirebaseDatabase {
                     currentUserDocRef.set(newUser)
                 }
             }
-        }.addOnCompleteListener { onComplete }
+        }
     }
 
 
@@ -40,6 +40,14 @@ object FirebaseDatabase {
                 .collection("listOfFavorites")
                 .document(pokemon.id)
                 .set(pokemon)
+    }
+
+    fun deleteFromFavorites(pokemonId: String){
+        favoritesCollectionRef
+                .document(currentUserDocRef.id)
+                .collection("listOfFavorites")
+                .document(pokemonId)
+                .delete()
     }
 
     fun getFavorites(): List<Pokemon>{

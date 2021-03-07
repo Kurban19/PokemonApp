@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide
 import com.shkiper.pokemonapp.model.Pokemon
 import com.shkiper.pokemonapp.model.Resource
 import com.shkiper.pokemonapp.utill.ViewModelFactory
+import kotlinx.android.synthetic.main.fragment_random.*
 
 class SearchFragment : Fragment() {
 
@@ -48,6 +49,7 @@ class SearchFragment : Fragment() {
 
         iv_add_to_favorites.setOnClickListener {
             viewModel.addToFavorites(pokemon)
+            iv_add_to_favorites.visibility = View.GONE
         }
 
     }
@@ -81,6 +83,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun showPokemon(pokemon: Pokemon) {
+        iv_add_to_favorites.visibility = View.VISIBLE
         pokemon_result.visibility = View.VISIBLE
         Glide.with(iv_pokemon_image)
                 .load(pokemon.getImageUrl())

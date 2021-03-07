@@ -16,10 +16,8 @@ import com.shkiper.pokemonapp.retrofit.PokeApiImpl
 import com.shkiper.pokemonapp.retrofit.RetrofitBuilder
 import com.shkiper.pokemonapp.utill.ViewModelFactory
 import com.shkiper.pokemonapp.viewmodel.RandomViewModel
-import com.shkiper.pokemonapp.viewmodel.SearchViewModel
 import kotlinx.android.synthetic.main.fragment_random.*
 import kotlinx.android.synthetic.main.fragment_search.*
-import kotlinx.android.synthetic.main.fragment_search.progress_bar
 
 class RandomFragment : Fragment() {
 
@@ -44,6 +42,11 @@ class RandomFragment : Fragment() {
         }
 
 
+        iv_add_to_favorites_random.setOnClickListener {
+            viewModel.addToFavorite(pokemon)
+            iv_add_to_favorites_random.visibility = View.GONE
+        }
+
 
 
     }
@@ -51,7 +54,7 @@ class RandomFragment : Fragment() {
 
     private fun getPokemon() {
         showLoader()
-        viewModel.getRandomPokemon()
+        viewModel.fetchRandomPokemon()
         viewModel.getPokemon()?.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
@@ -81,6 +84,7 @@ class RandomFragment : Fragment() {
     }
 
     private fun showPokemon(pokemon: Pokemon) {
+        iv_add_to_favorites_random.visibility = View.VISIBLE
         pokemon_result_random.visibility = View.VISIBLE
         Glide.with(iv_pokemon_image_random)
             .load(pokemon.getImageUrl())

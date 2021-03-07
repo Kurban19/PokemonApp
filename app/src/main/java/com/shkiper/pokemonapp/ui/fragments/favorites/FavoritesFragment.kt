@@ -46,7 +46,6 @@ class FavoritesFragment : Fragment() {
     private fun initViews(){
         pokemonAdapter = PokemonAdapter()
 
-
         with(rv_result){
             adapter = pokemonAdapter
             layoutManager = LinearLayoutManager(this@FavoritesFragment.context)
