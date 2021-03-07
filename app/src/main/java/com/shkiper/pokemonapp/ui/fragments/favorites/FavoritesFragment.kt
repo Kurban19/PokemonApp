@@ -1,6 +1,7 @@
 package com.shkiper.pokemonapp.ui.fragments.favorites
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -62,11 +63,11 @@ class FavoritesFragment : Fragment() {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
                     val pokemons = it.data ?: emptyList()
-                    if(pokemons.isNotEmpty()){
-                        showResult(pokemons)
-                    }
-                    else
-                        showEmpty()
+//                    if(pokemons.isNotEmpty()){
+                    showResult(pokemons)
+//                    }
+//                    else
+//                        showEmpty()
                 }
                 Resource.Status.LOADING -> {
                     showLoader()
@@ -80,10 +81,7 @@ class FavoritesFragment : Fragment() {
         })
     }
 
-    override fun onResume() {
-        super.onResume()
-        setupObserver()
-    }
+
 
     private fun showResult(pokemons: List<Pokemon>) {
         rv_result.visibility = View.VISIBLE

@@ -8,14 +8,11 @@ import com.shkiper.pokemonapp.model.Resource
 
 class FavoritesViewModel : ViewModel(){
 
-    
     private val favorites = MutableLiveData<Resource<List<Pokemon>>>()
-
 
     init {
         fetchFavorites()
     }
-
 
     private fun fetchFavorites(){
         favorites.postValue(Resource.loading(null))
@@ -25,6 +22,7 @@ class FavoritesViewModel : ViewModel(){
             favorites.postValue(Resource.error(e.toString(), null))
         }
     }
+
 
     fun getFavorites(): MutableLiveData<Resource<List<Pokemon>>> {
         return favorites

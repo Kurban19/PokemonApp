@@ -55,7 +55,6 @@ class SearchFragment : Fragment() {
     }
 
     private fun findPokemon(query: String) {
-        showLoader()
         viewModel.findPokemon(query)
         viewModel.getPokemon().observe(viewLifecycleOwner, Observer {
             when(it.status){

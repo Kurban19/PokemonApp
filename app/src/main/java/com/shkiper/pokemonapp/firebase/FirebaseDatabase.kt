@@ -4,6 +4,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.shkiper.pokemonapp.model.Pokemon
+import com.shkiper.pokemonapp.model.Resource
 import com.shkiper.pokemonapp.model.User
 
 object FirebaseDatabase {
@@ -50,7 +51,7 @@ object FirebaseDatabase {
                 .delete()
     }
 
-    fun getFavorites(): List<Pokemon>{
+    fun getFavorites(): MutableList<Pokemon> {
         val listOfPokemon = mutableListOf<Pokemon>()
         favoritesCollectionRef.document(currentUserDocRef.id)
                 .collection("listOfFavorites")
@@ -59,6 +60,7 @@ object FirebaseDatabase {
                         val pokemon = document.toObject(Pokemon::class.java)
                         listOfPokemon.add(pokemon)
                     }
+
                 }
         return listOfPokemon
     }
