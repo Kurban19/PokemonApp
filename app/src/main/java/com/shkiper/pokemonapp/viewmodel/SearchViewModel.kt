@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.shkiper.pokemonapp.firebase.FirebaseDatabase
 import com.shkiper.pokemonapp.model.Pokemon
 import com.shkiper.pokemonapp.model.Resource
 import com.shkiper.pokemonapp.retrofit.PokeApi
@@ -31,7 +32,7 @@ class SearchViewModel(private val apiHelper: PokeApi): ViewModel() {
     }
 
     fun addToFavorites(pokemon: Pokemon){
-
+        FirebaseDatabase.addPokemonToFavorites(pokemon)
     }
 
     fun getPokemon(): LiveData<Resource<Pokemon>> {

@@ -63,7 +63,11 @@ class FavoritesFragment : Fragment() {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
                     val pokemons = it.data ?: emptyList()
-                    showResult(pokemons)
+                    if(pokemons.isNotEmpty()){
+                        showResult(pokemons)
+                    }
+                    else
+                        showEmpty()
                 }
                 Resource.Status.LOADING -> {
                     showLoader()
@@ -75,6 +79,11 @@ class FavoritesFragment : Fragment() {
                 }
             }
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setupObserver()
     }
 
     private fun showResult(pokemons: List<Pokemon>) {
@@ -89,13 +98,21 @@ class FavoritesFragment : Fragment() {
     }
 
     private fun hideLoader() {
+        no_results_placeholder_favorites.visibility = View.GONE
         progress_bar_favorites.visibility = View.GONE
+    }
+
+
+    private fun showEmpty() {
+        rv_result.visibility = View.GONE
+        no_results_placeholder_favorites.visibility = View.VISIBLE
+        no_results_placeholder_favorites.text = no_results_placeholder_favorites.context.getString(R.string.empty_result)
     }
 
     private fun showError() {
         rv_result.visibility = View.GONE
         no_results_placeholder_favorites.visibility = View.VISIBLE
-        no_results_placeholder_favorites.text = no_results_placeholder.context.getString(R.string.error)
+        no_results_placeholder_favorites.text = no_results_placeholder_favorites.context.getString(R.string.error)
     }
 
 }

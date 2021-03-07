@@ -9,7 +9,8 @@ import com.bumptech.glide.Glide
 import com.shkiper.pokemonapp.R
 import com.shkiper.pokemonapp.model.Pokemon
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.rv_movie_item.view.*
+import kotlinx.android.synthetic.main.rv_pokemon_item.view.*
+
 
 class PokemonAdapter: RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>(){
 

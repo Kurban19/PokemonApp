@@ -10,6 +10,7 @@
     <string name="random_text">Случайный</string>
     <string name="search_alert">Пустое поле</string>
     <string name="error">Ошибка</string>
+    <string name="empty_result">Список пока пуст</string>
     <string name="string_base_experience">Base experience:</string>
     <string name="string_get_random">Найти случайного</string>
     <string name="sign_up_btn">Войти</string>
