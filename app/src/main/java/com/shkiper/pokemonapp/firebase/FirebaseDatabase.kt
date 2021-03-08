@@ -3,6 +3,7 @@ package com.shkiper.pokemonapp.firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 import com.shkiper.pokemonapp.model.Pokemon
 import com.shkiper.pokemonapp.model.Resource
 import com.shkiper.pokemonapp.model.User
@@ -31,9 +32,6 @@ object FirebaseDatabase {
             }
         }
     }
-
-
-
 
     fun addPokemonToFavorites(pokemon: Pokemon){
         favoritesCollectionRef
@@ -65,5 +63,27 @@ object FirebaseDatabase {
         return listOfPokemon
     }
 
+
+    fun addFavoritesListener(
+            onListen: (List<Pokemon>) -> Unit
+    ): ListenerRegistration {
+        return favoritesCollectionRef.document(currentUserDocRef.id)
+                .collection("listOfFavorites")
+                .addSnapshotListener { querySnapshot, firebaseFireStoreException ->
+                    if (firebaseFireStoreException != null) {
+                        return@addSnapshotListener
+                    }
+
+                    val items = mutableListOf<Pokemon>()
+                    querySnapshot?.documents?.forEach {
+                        val message = it.toObject(Pokemon::class.java)
+                        if (message != null) {
+                            items.add(message)
+                        }
+                        return@forEach
+                    }
+                    onListen(items)
+                }
+    }
 
 }

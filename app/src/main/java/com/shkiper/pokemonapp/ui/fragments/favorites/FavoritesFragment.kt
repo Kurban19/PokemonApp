@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.shkiper.pokemonapp.R
+import com.shkiper.pokemonapp.firebase.FirebaseDatabase
 import com.shkiper.pokemonapp.model.Pokemon
 import com.shkiper.pokemonapp.model.Resource
 import com.shkiper.pokemonapp.ui.adapter.PokemonAdapter
@@ -41,6 +42,7 @@ class FavoritesFragment : Fragment() {
         initViews()
         initViewModel()
         setupObserver()
+
     }
 
 
@@ -63,11 +65,13 @@ class FavoritesFragment : Fragment() {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
                     val pokemons = it.data ?: emptyList()
-//                    if(pokemons.isNotEmpty()){
-                    showResult(pokemons)
-//                    }
-//                    else
-//                        showEmpty()
+                    if(pokemons.isNotEmpty()){
+                        showResult(pokemons)
+                        hideLoader()
+                    }
+                    else
+                        showEmpty()
+                        hideLoader()
                 }
                 Resource.Status.LOADING -> {
                     showLoader()
@@ -87,6 +91,7 @@ class FavoritesFragment : Fragment() {
         rv_result.visibility = View.VISIBLE
         pokemonAdapter.updateData(pokemons)
     }
+
 
 
     private fun showLoader() {

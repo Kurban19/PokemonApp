@@ -1,5 +1,6 @@
 package com.shkiper.pokemonapp.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.shkiper.pokemonapp.firebase.FirebaseDatabase
@@ -17,14 +18,18 @@ class FavoritesViewModel : ViewModel(){
     private fun fetchFavorites(){
         favorites.postValue(Resource.loading(null))
         try {
-            favorites.postValue(Resource.success(FirebaseDatabase.getFavorites()))
+            FirebaseDatabase.addFavoritesListener (this::setPokemons)
         } catch (e: Exception) {
             favorites.postValue(Resource.error(e.toString(), null))
         }
     }
 
+    fun setPokemons(pokemons: List<Pokemon>){
+        favorites.postValue(Resource.success(pokemons))
+    }
 
-    fun getFavorites(): MutableLiveData<Resource<List<Pokemon>>> {
+
+    fun getFavorites(): LiveData<Resource<List<Pokemon>>> {
         return favorites
     }
 
