@@ -12,6 +12,8 @@
     <string name="error">Ошибка</string>
     <string name="empty_result">Список пока пуст</string>
     <string name="string_base_experience">Base experience:</string>
+    <string name="string_weight">Weight:</string>
+    <string name="string_height">Height:</string>
     <string name="string_get_random">Найти случайного</string>
     <string name="sign_up_btn">Войти</string>
 </resources>

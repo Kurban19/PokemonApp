@@ -53,6 +53,47 @@
             android:textSize="@dimen/font_normal_16"
             />
 
+        <TextView
+            android:id="@+id/tv_weight_text_random"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_base_experience_text_random"
+            android:layout_toEndOf="@id/iv_pokemon_image_random"
+            android:text="@string/string_weight"
+            android:textSize="@dimen/font_normal_16"
+            />
+
+        <TextView
+            android:id="@+id/tv_weight_scores_random"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_base_experience_text_random"
+            android:layout_toEndOf="@id/tv_weight_text_random"
+            tools:text="43"
+            android:textSize="@dimen/font_normal_16"
+            />
+
+
+        <TextView
+            android:id="@+id/tv_height_text_random"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_weight_text_random"
+            android:layout_toEndOf="@id/iv_pokemon_image_random"
+            android:text="@string/string_height"
+            android:textSize="@dimen/font_normal_16"
+            />
+
+        <TextView
+            android:id="@+id/tv_height_scores_random"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_weight_text_random"
+            android:layout_toEndOf="@id/tv_height_text_random"
+            tools:text="43"
+            android:textSize="@dimen/font_normal_16"
+            />
+
 
         <ImageView
             android:id="@+id/iv_add_to_favorites_random"
@@ -60,7 +101,6 @@
             android:layout_height="30dp"
             android:src="@drawable/ic_bookmark_24"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
             android:layout_margin="@dimen/spacing_normal_16"
             android:visibility="visible"
             />
@@ -85,7 +125,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|top"
-            android:visibility="visible"
+            android:visibility="gone"
             android:text="@string/no_results_text" />
 
         <Button

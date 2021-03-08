@@ -2,7 +2,7 @@
 <resources>
 
     <!-- font sizes -->
-    <dimen name="font_huge_24">24sp</dimen>
+    <dimen name="font_huge_24">28sp</dimen>
     <dimen name="font_large_20">20sp</dimen>
     <dimen name="font_normal_16">16sp</dimen>
     <dimen name="font_small_12">12sp</dimen>
@@ -16,6 +16,7 @@
 
 
     <!--size elements-->
-    <dimen name="pokemon_image_size">60dp</dimen>
+    <dimen name="pokemon_image_size">150dp</dimen>
+    <dimen name="rv_pokemon_image_size">60dp</dimen>
     <dimen name="default_corners">25dp</dimen>
 </resources>

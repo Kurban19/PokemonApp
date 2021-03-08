@@ -90,8 +90,10 @@ class RandomFragment : Fragment() {
             .load(pokemon.getImageUrl())
             .into(iv_pokemon_image_random)
 
-        tv_base_experience_scores_random.text = pokemon.experience.toString()
         tv_pokemon_name_random.text = pokemon.name
+        tv_base_experience_scores_random.text = pokemon.experience.toString()
+        tv_weight_scores_random.text = pokemon.weight
+        tv_height_scores_random.text = pokemon.height
     }
 
     private fun showLoader() {

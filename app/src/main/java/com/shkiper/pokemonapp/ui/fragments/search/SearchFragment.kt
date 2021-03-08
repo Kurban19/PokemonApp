@@ -88,8 +88,11 @@ class SearchFragment : Fragment() {
                 .load(pokemon.getImageUrl())
                 .into(iv_pokemon_image)
 
-        tv_base_experience_scores.text = pokemon.experience.toString()
         tv_pokemon_name.text = pokemon.name
+        tv_base_experience_scores.text = pokemon.experience.toString()
+        tv_weight_scores.text = pokemon.weight
+        tv_height_scores.text = pokemon.height
+
     }
 
     private fun showLoader() {
