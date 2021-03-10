@@ -20,7 +20,7 @@ class RandomViewModel(private val apiHelper: PokeApi): ViewModel() {
         viewModelScope.launch {
             pokemon.postValue(Resource.loading(null))
             try {
-                pokemon.postValue(Resource.success(apiHelper.getRandomPokemon()))
+//                pokemon.postValue(Resource.success(apiHelper.getRandomPokemon()))
             } catch (e: Exception) {
                 pokemon.postValue(Resource.error(e.toString(), null))
             }

@@ -22,6 +22,7 @@ class FavoritesViewModel : ViewModel(){
         } catch (e: Exception) {
             favorites.postValue(Resource.error(e.toString(), null))
         }
+
     }
 
     fun setPokemons(pokemons: List<Pokemon>){

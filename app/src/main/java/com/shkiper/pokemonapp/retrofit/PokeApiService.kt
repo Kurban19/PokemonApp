@@ -1,20 +1,21 @@
 package com.shkiper.pokemonapp.retrofit
 
+import com.shkiper.pokemonapp.di.component.DaggerApiComponent
 import com.shkiper.pokemonapp.model.Pokemon
-import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Path
-import kotlin.random.Random
+import io.reactivex.Single
+import javax.inject.Inject
 
-interface PokeApiService {
+class PokeApiService{
 
-    @GET("pokemon/{pokemon_name}")
-    suspend fun searchPokemon(
-        @Path("pokemon_name") name: String
-    ): Pokemon
+    @Inject
+    lateinit var apiService: PokeApi
 
-    @GET("pokemon/{pokemon_id}")
-    suspend fun getRandomPokemon(
-        @Path("pokemon_id") id: String = Random.nextInt(0, 900).toString()
-    ): Pokemon
+    init {
+        DaggerApiComponent.create()
+            .inject(this)
+    }
+
+    fun searchPokemon(name: String): Single<Pokemon> = apiService.searchPokemon(name)
+
+    fun getRandomPokemon(): Single<Pokemon> = apiService.getRandomPokemon()
 }

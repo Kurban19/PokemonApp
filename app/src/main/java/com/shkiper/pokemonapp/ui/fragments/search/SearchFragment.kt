@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import com.shkiper.pokemonapp.R
-import com.shkiper.pokemonapp.retrofit.PokeApiImpl
+import com.shkiper.pokemonapp.retrofit.PokeApiService
 import com.shkiper.pokemonapp.retrofit.RetrofitBuilder
 import com.shkiper.pokemonapp.viewmodel.SearchViewModel
 import kotlinx.android.synthetic.main.fragment_search.*
@@ -18,7 +18,6 @@ import com.bumptech.glide.Glide
 import com.shkiper.pokemonapp.model.Pokemon
 import com.shkiper.pokemonapp.model.Resource
 import com.shkiper.pokemonapp.utill.ViewModelFactory
-import kotlinx.android.synthetic.main.fragment_random.*
 
 class SearchFragment : Fragment() {
 
@@ -77,8 +76,8 @@ class SearchFragment : Fragment() {
 
 
     private fun initViewModel(){
-        viewModel =  ViewModelProviders.of(this, ViewModelFactory(PokeApiImpl(RetrofitBuilder.apiService))).get(
-                SearchViewModel::class.java)
+//        viewModel =  ViewModelProviders.of(this, ViewModelFactory(PokeApiService(RetrofitBuilder.apiService))).get(
+//                SearchViewModel::class.java)
     }
 
     private fun showPokemon(pokemon: Pokemon) {

@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.shkiper.pokemonapp.R
 import com.shkiper.pokemonapp.model.Pokemon
 import com.shkiper.pokemonapp.model.Resource
-import com.shkiper.pokemonapp.retrofit.PokeApiImpl
+import com.shkiper.pokemonapp.retrofit.PokeApiService
 import com.shkiper.pokemonapp.retrofit.RetrofitBuilder
 import com.shkiper.pokemonapp.utill.ViewModelFactory
 import com.shkiper.pokemonapp.viewmodel.RandomViewModel
@@ -34,7 +34,7 @@ class RandomFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViewModel()
+//        initViewModel()
 
 
         btn_get_random.setOnClickListener {
@@ -76,11 +76,11 @@ class RandomFragment : Fragment() {
 
 
     private fun initViewModel() {
-        viewModel =
-            ViewModelProviders.of(this, ViewModelFactory(PokeApiImpl(RetrofitBuilder.apiService)))
-                .get(
-                    RandomViewModel::class.java
-                )
+//        viewModel =
+//            ViewModelProviders.of(this, ViewModelFactory(PokeApiService(RetrofitBuilder.apiService)))
+//                .get(
+//                    RandomViewModel::class.java
+//                )
     }
 
     private fun showPokemon(pokemon: Pokemon) {

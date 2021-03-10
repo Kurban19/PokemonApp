@@ -17,6 +17,6 @@ object RetrofitBuilder {
             .build()
     }
 
-    val apiService: PokeApiService = getRetrofit().create(PokeApiService::class.java)
+    val apiService: PokeApi = getRetrofit().create(PokeApi::class.java)
 
 }

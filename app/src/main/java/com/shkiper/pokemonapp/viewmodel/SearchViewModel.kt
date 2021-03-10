@@ -19,7 +19,7 @@ class SearchViewModel(private val apiHelper: PokeApi): ViewModel() {
         viewModelScope.launch {
             pokemon.postValue(Resource.loading(null))
             try {
-                pokemon.postValue(Resource.success(apiHelper.searchPokemon(name = query)))
+//                pokemon.postValue(Resource.success(apiHelper.searchPokemon(name = query)))
             } catch (e: Exception) {
                 pokemon.postValue(Resource.error(e.toString(), null))
             }
