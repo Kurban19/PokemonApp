@@ -7,11 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.shkiper.pokemonapp.R
 import com.shkiper.pokemonapp.model.Pokemon
 import com.shkiper.pokemonapp.model.Resource
 import com.shkiper.pokemonapp.viewmodel.RandomViewModel
+import com.shkiper.pokemonapp.viewmodel.SearchViewModel
 import kotlinx.android.synthetic.main.fragment_random.*
 import kotlinx.android.synthetic.main.fragment_search.*
 
@@ -30,8 +32,7 @@ class RandomFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        initViewModel()
-
+        initViewModel()
 
         btn_get_random.setOnClickListener {
             getPokemon()
@@ -47,11 +48,9 @@ class RandomFragment : Fragment() {
 
     }
 
-
     private fun getPokemon() {
-        showLoader()
-        viewModel.fetchRandomPokemon()
-        viewModel.getPokemon()?.observe(viewLifecycleOwner, Observer {
+        viewModel.refresh()
+        viewModel.pokemon.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
                     hideLoader()
@@ -72,11 +71,7 @@ class RandomFragment : Fragment() {
 
 
     private fun initViewModel() {
-//        viewModel =
-//            ViewModelProviders.of(this, ViewModelFactory(PokeApiService(RetrofitBuilder.apiService)))
-//                .get(
-//                    RandomViewModel::class.java
-//                )
+        viewModel = ViewModelProviders.of(this).get(RandomViewModel::class.java)
     }
 
     private fun showPokemon(pokemon: Pokemon) {

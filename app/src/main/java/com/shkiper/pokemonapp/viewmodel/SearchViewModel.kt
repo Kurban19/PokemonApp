@@ -75,4 +75,9 @@ class SearchViewModel(application: Application) : AndroidViewModel(application) 
         FirebaseDatabase.addPokemonToFavorites(pokemon)
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        disposable.clear()
+    }
+
 }

@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.shkiper.pokemonapp.R
 import com.shkiper.pokemonapp.firebase.FirebaseDatabase
@@ -16,6 +17,7 @@ import com.shkiper.pokemonapp.model.Pokemon
 import com.shkiper.pokemonapp.model.Resource
 import com.shkiper.pokemonapp.ui.adapter.PokemonAdapter
 import com.shkiper.pokemonapp.viewmodel.FavoritesViewModel
+import com.shkiper.pokemonapp.viewmodel.SearchViewModel
 import kotlinx.android.synthetic.main.fragment_favorites.*
 import kotlinx.android.synthetic.main.fragment_random.*
 import kotlinx.android.synthetic.main.fragment_search.*
@@ -57,7 +59,7 @@ class FavoritesFragment : Fragment() {
     }
 
     private fun initViewModel(){
-        viewModel = ViewModelProvider(this)[FavoritesViewModel::class.java]
+        viewModel = ViewModelProviders.of(this).get(FavoritesViewModel::class.java)
     }
 
     private fun setupObserver() {
