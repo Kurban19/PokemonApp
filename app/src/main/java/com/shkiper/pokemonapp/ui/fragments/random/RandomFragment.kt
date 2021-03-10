@@ -7,14 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.shkiper.pokemonapp.R
 import com.shkiper.pokemonapp.model.Pokemon
 import com.shkiper.pokemonapp.model.Resource
-import com.shkiper.pokemonapp.retrofit.PokeApiService
-import com.shkiper.pokemonapp.retrofit.RetrofitBuilder
-import com.shkiper.pokemonapp.utill.ViewModelFactory
 import com.shkiper.pokemonapp.viewmodel.RandomViewModel
 import kotlinx.android.synthetic.main.fragment_random.*
 import kotlinx.android.synthetic.main.fragment_search.*

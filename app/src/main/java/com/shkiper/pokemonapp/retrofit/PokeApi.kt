@@ -2,7 +2,6 @@ package com.shkiper.pokemonapp.retrofit
 
 import com.shkiper.pokemonapp.model.Pokemon
 import io.reactivex.Single
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 import kotlin.random.Random

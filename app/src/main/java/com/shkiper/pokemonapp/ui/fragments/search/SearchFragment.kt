@@ -7,17 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import com.google.android.material.snackbar.Snackbar
-import com.shkiper.pokemonapp.R
-import com.shkiper.pokemonapp.retrofit.PokeApiService
-import com.shkiper.pokemonapp.retrofit.RetrofitBuilder
-import com.shkiper.pokemonapp.viewmodel.SearchViewModel
-import kotlinx.android.synthetic.main.fragment_search.*
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
+import com.shkiper.pokemonapp.R
 import com.shkiper.pokemonapp.model.Pokemon
 import com.shkiper.pokemonapp.model.Resource
-import com.shkiper.pokemonapp.utill.ViewModelFactory
+import com.shkiper.pokemonapp.viewmodel.SearchViewModel
+import kotlinx.android.synthetic.main.fragment_search.*
 
 class SearchFragment : Fragment() {
 
@@ -41,7 +38,6 @@ class SearchFragment : Fragment() {
             if (query.isBlank()) {
                 Snackbar.make(view, getString(R.string.search_alert), Snackbar.LENGTH_LONG).show()
             } else {
-
                 findPokemon(query.toLowerCase())
             }
         }
@@ -54,8 +50,8 @@ class SearchFragment : Fragment() {
     }
 
     private fun findPokemon(query: String) {
-        viewModel.findPokemon(query)
-        viewModel.getPokemon().observe(viewLifecycleOwner, Observer {
+        viewModel.refresh(query)
+        viewModel.pokemon.observe(viewLifecycleOwner, Observer {
             when(it.status){
                 Resource.Status.SUCCESS ->{
                     hideLoader()
@@ -76,8 +72,7 @@ class SearchFragment : Fragment() {
 
 
     private fun initViewModel(){
-//        viewModel =  ViewModelProviders.of(this, ViewModelFactory(PokeApiService(RetrofitBuilder.apiService))).get(
-//                SearchViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(SearchViewModel::class.java)
     }
 
     private fun showPokemon(pokemon: Pokemon) {

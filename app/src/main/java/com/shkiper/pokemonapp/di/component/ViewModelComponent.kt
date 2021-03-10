@@ -1,13 +1,14 @@
 package com.shkiper.pokemonapp.di.component
 
 import com.shkiper.pokemonapp.di.module.ApiModule
+import com.shkiper.pokemonapp.di.module.AppModule
 import com.shkiper.pokemonapp.viewmodel.RandomViewModel
 import com.shkiper.pokemonapp.viewmodel.SearchViewModel
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [ApiModule::class])
+@Component(modules = [ApiModule::class, AppModule::class])
 interface ViewModelComponent {
     fun inject(viewModel: SearchViewModel)
 

@@ -1,37 +1,78 @@
 package com.shkiper.pokemonapp.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.app.Application
+import androidx.lifecycle.*
+import com.shkiper.pokemonapp.di.component.DaggerViewModelComponent
+import com.shkiper.pokemonapp.di.module.AppModule
 import com.shkiper.pokemonapp.firebase.FirebaseDatabase
 import com.shkiper.pokemonapp.model.Pokemon
 import com.shkiper.pokemonapp.model.Resource
 import com.shkiper.pokemonapp.retrofit.PokeApi
+import com.shkiper.pokemonapp.retrofit.PokeApiService
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.observers.DisposableSingleObserver
+import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SearchViewModel(private val apiHelper: PokeApi): ViewModel() {
+class SearchViewModel(application: Application) : AndroidViewModel(application) {
 
 
-    private val pokemon = MutableLiveData<Resource<Pokemon>>()
+    constructor(application: Application, test: Boolean = true) : this(application) {
+        injected = true
+    }
 
-    fun findPokemon(query: String){
-        viewModelScope.launch {
-            pokemon.postValue(Resource.loading(null))
-            try {
-//                pokemon.postValue(Resource.success(apiHelper.searchPokemon(name = query)))
-            } catch (e: Exception) {
-                pokemon.postValue(Resource.error(e.toString(), null))
-            }
+
+    val pokemon by lazy { MutableLiveData<Resource<Pokemon>>() }
+
+    private val disposable: CompositeDisposable = CompositeDisposable()
+
+    @Inject
+    lateinit var apiService: PokeApiService
+
+
+    private var injected = false
+
+    private fun findPokemon(query: String){
+        pokemon.postValue(Resource.loading(null))
+        disposable.add(
+            apiService.searchPokemon(query)
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object : DisposableSingleObserver<Pokemon>() {
+                override fun onSuccess(pokemonlList: Pokemon) {
+                    pokemon.value = Resource.success(pokemonlList)
+                }
+                override fun onError(e: Throwable) {
+                    e.printStackTrace()
+                    pokemon.value = Resource.error(e.printStackTrace().toString(),null)
+                }
+            })
+        )
+
+    }
+
+    private fun inject() {
+        if (!injected) {
+            DaggerViewModelComponent.builder()
+                .appModule(
+                    AppModule(getApplication())
+                )
+                .build()
+                .inject(this)
         }
     }
 
-    fun addToFavorites(pokemon: Pokemon){
-        FirebaseDatabase.addPokemonToFavorites(pokemon)
+
+    fun refresh(searchQuery: String) {
+        inject()
+        findPokemon(searchQuery)
     }
 
-    fun getPokemon(): LiveData<Resource<Pokemon>> {
-        return pokemon
+
+    fun addToFavorites(pokemon: Pokemon){
+        FirebaseDatabase.addPokemonToFavorites(pokemon)
     }
 
 }

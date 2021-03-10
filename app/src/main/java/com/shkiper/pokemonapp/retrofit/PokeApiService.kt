@@ -8,14 +8,14 @@ import javax.inject.Inject
 class PokeApiService{
 
     @Inject
-    lateinit var apiService: PokeApi
+    lateinit var api: PokeApi
 
     init {
         DaggerApiComponent.create()
             .inject(this)
     }
 
-    fun searchPokemon(name: String): Single<Pokemon> = apiService.searchPokemon(name)
+    fun searchPokemon(name: String): Single<Pokemon> = api.searchPokemon(name)
 
-    fun getRandomPokemon(): Single<Pokemon> = apiService.getRandomPokemon()
+    fun getRandomPokemon(): Single<Pokemon> = api.getRandomPokemon()
 }
