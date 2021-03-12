@@ -18,63 +18,45 @@ import javax.inject.Inject
 
 class RandomViewModel(application: Application) : AndroidViewModel(application) {
 
-    constructor(application: Application, test: Boolean = true) : this(application) {
-        injected = true
-    }
 
     val pokemon by lazy {MutableLiveData<Resource<Pokemon>>()}
 
 
-    private val disposable: CompositeDisposable = CompositeDisposable()
-    private var injected = false
-
     @Inject
     lateinit var apiService: PokeApiService
 
-
-    private fun fetchRandomPokemon(){
-        pokemon.postValue(Resource.loading(null))
-        disposable.add(
-            apiService.getRandomPokemon()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableSingleObserver<Pokemon>() {
-                    override fun onSuccess(pokemonlList: Pokemon) {
-                        pokemon.value = Resource.success(pokemonlList)
-                    }
-                    override fun onError(e: Throwable) {
-                        e.printStackTrace()
-                        pokemon.value = Resource.error(e.printStackTrace().toString(),null)
-                    }
-                })
-        )
+    init{
+        inject()
     }
 
+    private fun fetchRandomPokemon(){
 
-    private fun inject() {
-        if (!injected) {
-            DaggerViewModelComponent.builder()
-                .appModule(
-                    AppModule(getApplication()))
-                .build()
-                .inject(this)
+        viewModelScope.launch {
+            pokemon.postValue(Resource.loading(null))
+            try {
+                pokemon.postValue(Resource.success(apiService.getRandomPokemon()))
+            } catch (e: Exception) {
+                pokemon.postValue(Resource.error(e.toString(), null))
+            }
         }
     }
 
 
+    private fun inject() {
+        DaggerViewModelComponent.builder()
+                .appModule(
+                        AppModule(getApplication()))
+                .build()
+                .inject(this)
+    }
+
+
     fun refresh() {
-        inject()
         fetchRandomPokemon()
     }
 
     fun addToFavorite(pokemon: Pokemon){
         FirebaseDatabase.addPokemonToFavorites(pokemon)
-    }
-
-
-    override fun onCleared() {
-        super.onCleared()
-        disposable.clear()
     }
 
 

@@ -17,5 +17,5 @@ class PokeApiService{
 
     fun searchPokemon(name: String): Single<Pokemon> = api.searchPokemon(name)
 
-    fun getRandomPokemon(): Single<Pokemon> = api.getRandomPokemon()
+    suspend fun getRandomPokemon(): Pokemon = api.getRandomPokemon()
 }

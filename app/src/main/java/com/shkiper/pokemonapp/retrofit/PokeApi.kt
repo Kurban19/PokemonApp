@@ -14,7 +14,7 @@ interface PokeApi {
     ): Single<Pokemon>
 
     @GET("pokemon/{pokemon_id}")
-    fun getRandomPokemon(
+    suspend fun getRandomPokemon(
         @Path("pokemon_id") id: String = Random.nextInt(0, 900).toString()
-    ): Single<Pokemon>
+    ): Pokemon
 }

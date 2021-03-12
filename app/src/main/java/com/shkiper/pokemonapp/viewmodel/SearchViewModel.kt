@@ -19,11 +19,6 @@ import javax.inject.Inject
 class SearchViewModel(application: Application) : AndroidViewModel(application) {
 
 
-    constructor(application: Application, test: Boolean = true) : this(application) {
-        injected = true
-    }
-
-
     val pokemon by lazy { MutableLiveData<Resource<Pokemon>>() }
 
     private val disposable: CompositeDisposable = CompositeDisposable()
@@ -31,8 +26,11 @@ class SearchViewModel(application: Application) : AndroidViewModel(application) 
     @Inject
     lateinit var apiService: PokeApiService
 
+    init {
+        inject()
+    }
 
-    private var injected = false
+
 
     private fun findPokemon(query: String){
         pokemon.postValue(Resource.loading(null))
@@ -54,19 +52,16 @@ class SearchViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     private fun inject() {
-        if (!injected) {
-            DaggerViewModelComponent.builder()
+        DaggerViewModelComponent.builder()
                 .appModule(
-                    AppModule(getApplication())
+                        AppModule(getApplication())
                 )
                 .build()
                 .inject(this)
-        }
     }
 
 
     fun refresh(searchQuery: String) {
-        inject()
         findPokemon(searchQuery)
     }
 

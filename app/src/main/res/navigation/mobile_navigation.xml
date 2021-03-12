@@ -7,15 +7,25 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.shkiper.pokemonapp.ui.fragments.search.SearchFragment" />
+        android:name="com.shkiper.pokemonapp.ui.fragments.search.SearchFragment"
+        tools:layout="@layout/fragment_search">
 
-    <fragment
-        android:id="@+id/ThirdFragment"
-        android:name="com.shkiper.pokemonapp.ui.fragments.random.RandomFragment"/>
+        <action
+            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment"
+            />
+    </fragment>
 
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.shkiper.pokemonapp.ui.fragments.favorites.FavoritesFragment"/>
+        android:name="com.shkiper.pokemonapp.ui.fragments.random.RandomFragment"
+        tools:layout="@layout/fragment_random"/>
+
+    <fragment
+        android:id="@+id/ThirdFragment"
+        android:name="com.shkiper.pokemonapp.ui.fragments.favorites.FavoritesFragment"
+        tools:layout="@layout/fragment_favorites">
+    </fragment>
 
 
 </navigation>
