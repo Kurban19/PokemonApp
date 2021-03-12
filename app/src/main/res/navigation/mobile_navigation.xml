@@ -8,13 +8,7 @@
     <fragment
         android:id="@+id/FirstFragment"
         android:name="com.shkiper.pokemonapp.ui.fragments.search.SearchFragment"
-        tools:layout="@layout/fragment_search">
-
-        <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment"
-            />
-    </fragment>
+        tools:layout="@layout/fragment_search"/>
 
     <fragment
         android:id="@+id/SecondFragment"
@@ -24,8 +18,7 @@
     <fragment
         android:id="@+id/ThirdFragment"
         android:name="com.shkiper.pokemonapp.ui.fragments.favorites.FavoritesFragment"
-        tools:layout="@layout/fragment_favorites">
-    </fragment>
+        tools:layout="@layout/fragment_favorites"/>
 
 
 </navigation>
