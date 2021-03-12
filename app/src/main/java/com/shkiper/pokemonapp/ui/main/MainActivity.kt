@@ -18,6 +18,8 @@ class MainActivity : AppCompatActivity() {
         setTheme(R.style.Theme_PokemonApp)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
         val host: NavHostFragment = supportFragmentManager.findFragmentById(R.id.container) as NavHostFragment? ?: return
         val navController = host.navController
         setUpBottomNav(navController)

@@ -49,20 +49,6 @@ object FirebaseDatabase {
                 .delete()
     }
 
-    fun getFavorites(): MutableList<Pokemon> {
-        val listOfPokemon = mutableListOf<Pokemon>()
-        favoritesCollectionRef.document(currentUserDocRef.id)
-                .collection("listOfFavorites")
-                .get().addOnSuccessListener{ result ->
-                    for(document in result){
-                        val pokemon = document.toObject(Pokemon::class.java)
-                        listOfPokemon.add(pokemon)
-                    }
-
-                }
-        return listOfPokemon
-    }
-
 
     fun addFavoritesListener(
             onListen: (List<Pokemon>) -> Unit
